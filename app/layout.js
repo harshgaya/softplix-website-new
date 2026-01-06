@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   metadataBase: new URL("https://softplix.com/"),
-  title: "SoftPlix: Website & Mobile App Development Company",
+  title: "SoftPlix: Website & Mobile App Development Company ",
   description:
     "SoftPlix provides innovative software solutions to empower businesses worldwide with cutting-edge technology and exceptional service.",
   keywords:
