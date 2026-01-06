@@ -21,7 +21,7 @@ export const metadata = {
   keywords:
     "SoftPlix, Software Solutions, Business Technology, Innovative Software, IT Services,Mobile App Development Company, Website Development Company, Custom Software Development, Technology Consulting, AI Agents",
   authors: [{ name: "SoftPlix", url: "https://softplix.com/" }],
-  creator: "SoftPlix: Website & Mobile App Development Company",
+  creator: "SoftPlix: Website & Mobile App Development Company ",
   openGraph: {
     title: "SoftPlix: Website & Mobile App Development Company",
     description:
