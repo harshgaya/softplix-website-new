@@ -1,5 +1,7 @@
+import { LINKEDIN, WHATSAPP } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -77,16 +79,16 @@ export default function Footer() {
             </h4>
             <div className="flex md:justify-end gap-3">
               <a
-                href="#"
+                href={LINKEDIN}
                 className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition"
               >
                 in
               </a>
               <a
-                href="#"
+                href={WHATSAPP}
                 className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition"
               >
-                X
+                <FaWhatsapp size={16} />
               </a>
             </div>
           </div>
