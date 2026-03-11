@@ -14,10 +14,10 @@ const team = [
     img: "/about/harsh.jpg",
   },
   {
-    name: "Rahul Singh(NITian)",
+    name: "Ravinder Banothu(NIT Rourkela)",
     role: "Engineering Lead",
     desc: "Guides delivery teams across web, mobile, and cloud.",
-    img: "/team/david.jpg",
+    img: "/about/ravindra.jpeg",
   },
 ];
 
