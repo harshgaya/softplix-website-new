@@ -15,10 +15,10 @@ import {
   FaLock,
   FaChartLine,
   FaCode,
-  FaMagnifyingGlass,
+  FaLayerGroup,
   FaMobileScreen,
   FaCartShopping,
-  FaLayerGroup,
+  FaGears,
   FaServer,
   FaLandmark,
   FaHeartPulse,
@@ -28,8 +28,8 @@ import {
   FaBuilding,
   FaPalette,
   FaDatabase,
+  FaCloudArrowUp,
   FaVial,
-  FaGears,
 } from "react-icons/fa6";
 
 // ─── Metadata ──────────────────────────────────────────────────────────────────
@@ -50,7 +50,7 @@ export const metadata = {
   },
 };
 
-// ─── Shared Components ─────────────────────────────────────────────────────────
+// ─── Atoms ─────────────────────────────────────────────────────────────────────
 
 function Badge({ children }) {
   return (
@@ -215,7 +215,7 @@ const SERVICES = [
     desc: "Robust RESTful and GraphQL APIs, microservices architectures, database design, and cloud backend infrastructure. We build the reliable data layer that powers your web application at any scale.",
   },
   {
-    icon: <FaMagnifyingGlass />,
+    icon: <FaDatabase />,
     title: "Web Performance & SEO Engineering",
     desc: "Technical SEO audits, Core Web Vitals optimisation, server-side rendering, structured data implementation, and page speed engineering to help your web presence rank and convert.",
   },
@@ -419,14 +419,15 @@ const ADVANTAGES = [
     body: "Our team is composed of senior engineers across frontend, backend, and DevOps — not juniors supervised by a single lead. Every project gets the expertise it deserves.",
   },
   {
-    icon: <FaCubes />,
-    title: "Scalable Architecture",
-    body: "Designed for growth from day one. Handle 100 to 10 million requests — our infrastructure scales without expensive rewrites or painful migrations.",
-  },
-  {
     icon: <FaBolt />,
     title: "Fast Time to Market",
     body: "Focused sprints, pre-built component libraries, and battle-tested architecture patterns mean we ship MVPs and production applications faster than any generalist agency.",
+  },
+  {
+    icon: <FaBolt />,
+    title: "SEO-First Development",
+    desc: "Every site we build is engineered for search performance — server-side rendering, Core Web Vitals, structured data, semantic HTML, and canonical URL strategy from day one.",
+    body: "Every site we build is engineered for search performance — server-side rendering, Core Web Vitals, structured data, semantic HTML, and canonical URL strategy from day one.",
   },
   {
     icon: <FaTag />,
@@ -550,7 +551,7 @@ function SeoContent() {
 
           <p>
             {
-              "Softplix builds primarily with Next.js, React, Node.js, PostgreSQL, and modern cloud infrastructure on AWS and Vercel. We choose this stack because it gives us the best combination of developer productivity, application performance, SEO capability, and long-term maintainability. We also work with Laravel, Django, and Ruby on Rails when the project warrants it — and we always recommend the technology that is genuinely the best fit for your specific requirements rather than the one we happen to prefer."
+              "Softplix builds primarily with Next.js, React, Node.js, PostgreSQL, and modern cloud infrastructure on AWS and Vercel. We choose this stack because it gives us the best combination of developer productivity, application performance, SEO capability, and long-term maintainability. We also work with other stacks when the project warrants it — including Laravel, Django, Ruby on Rails, and headless CMS architectures — and we always recommend the technology that is genuinely the best fit for your specific requirements rather than the one we happen to prefer."
             }
           </p>
 
@@ -616,7 +617,7 @@ function SeoContent() {
 
           <p>
             {
-              "AI integration has moved from a novelty to a standard feature in modern web applications. Conversational interfaces, intelligent search, personalised content, AI-generated summaries, and contextual assistance are now expected features in competitive web products across B2B and B2C categories. Softplix builds AI capabilities directly into web applications — integrating LLM APIs, implementing semantic search, and building intelligent user experiences that genuinely augment the core product value."
+              "AI integration has moved from a novelty to a standard feature in modern web applications. Conversational interfaces, intelligent search, personalised content, AI-generated summaries, and contextual assistance are now expected features in competitive web products across B2B and B2C categories. Softplix builds AI capabilities directly into web applications — integrating LLM APIs, implementing semantic search, and building intelligent user experiences that go beyond simple chatbots to genuinely augment the core product value."
             }
           </p>
 
@@ -775,7 +776,7 @@ const FAQS = [
   },
   {
     q: "What technologies does Softplix use for web development?",
-    a: "Our primary stack is Next.js, React, Node.js, PostgreSQL, and Tailwind CSS deployed on Vercel or AWS. We also build with Laravel, Django, and Ruby on Rails for specific use cases, and integrate with headless CMS platforms including Sanity, Contentful, and Strapi. We always recommend the stack that best fits your requirements.",
+    a: "Our primary stack is Next.js, React, Node.js, PostgreSQL, and Tailwind CSS deployed on Vercel or AWS. We also build with Laravel, Django, and Ruby on Rails for specific use cases, and integrate with headless CMS platforms including Sanity, Contentful, and Strapi. We always recommend the stack that best fits your requirements — not the one we happen to prefer.",
   },
   {
     q: "Do you build websites or full web applications?",
@@ -791,7 +792,7 @@ const FAQS = [
   },
   {
     q: "Do you offer website maintenance after launch?",
-    a: "Yes. We offer structured maintenance retainers covering security updates, dependency upgrades, bug fixes, performance monitoring, and ongoing feature development. We strongly recommend a maintenance plan for any production web application — the cost of neglected dependencies is significantly higher than a monthly retainer.",
+    a: "Yes. We offer structured maintenance retainers covering security updates, dependency upgrades, bug fixes, performance monitoring, and ongoing feature development. We strongly recommend a maintenance plan for any production web application — the cost of a month of neglected dependencies is significantly higher than a monthly retainer.",
   },
 ];
 
