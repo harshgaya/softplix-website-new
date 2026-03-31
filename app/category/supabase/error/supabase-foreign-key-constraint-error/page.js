@@ -1,624 +1,232 @@
 import Link from "next/link";
-import {
-  FaClock,
-  FaCalendarDays,
-  FaTag,
-  FaArrowRight,
-  FaCircleCheck,
-  FaCode,
-  FaTerminal,
-  FaTriangleExclamation,
-  FaLightbulb,
-  FaBookOpen,
-} from "react-icons/fa6";
+import { FaClock, FaCalendarDays, FaTag, FaArrowRight, FaCircleCheck, FaCode, FaTerminal, FaTriangleExclamation, FaLightbulb, FaBookOpen } from "react-icons/fa6";
 
-function CodeBlock({ title, children }) {
-  return (
-    <div className="my-6 rounded-2xl overflow-hidden border border-slate-800 shadow-lg">
-      {title && (
-        <div className="flex items-center gap-2 px-4 py-2.5 bg-slate-800 border-b border-slate-700">
-          <FaTerminal className="text-indigo-400 text-xs flex-shrink-0" />
-          <span className="text-xs font-mono text-slate-300">{title}</span>
-        </div>
-      )}
-      <pre className="bg-slate-900 px-5 py-4 overflow-x-auto text-sm leading-relaxed">
-        <code className="text-green-400 font-mono whitespace-pre">
-          {children}
-        </code>
-      </pre>
-    </div>
-  );
-}
-function ErrorBlock({ children }) {
-  return (
-    <div className="my-6 rounded-2xl overflow-hidden border border-red-900 shadow-lg">
-      <div className="flex items-center gap-2 px-4 py-2.5 bg-red-950 border-b border-red-900">
-        <FaTriangleExclamation className="text-red-400 text-xs flex-shrink-0" />
-        <span className="text-xs font-mono text-red-300">{"Error"}</span>
-      </div>
-      <pre className="bg-slate-900 px-5 py-4 overflow-x-auto text-sm leading-relaxed">
-        <code className="text-red-400 font-mono whitespace-pre">
-          {children}
-        </code>
-      </pre>
-    </div>
-  );
-}
-function TipBox({ children }) {
-  return (
-    <div className="my-6 flex gap-3 bg-indigo-50 border border-indigo-100 rounded-2xl px-5 py-4">
-      <FaLightbulb className="text-indigo-500 text-lg flex-shrink-0 mt-0.5" />
-      <p className="text-sm text-indigo-900 leading-relaxed">{children}</p>
-    </div>
-  );
-}
-function WarnBox({ children }) {
-  return (
-    <div className="my-6 flex gap-3 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4">
-      <FaTriangleExclamation className="text-amber-500 text-lg flex-shrink-0 mt-0.5" />
-      <p className="text-sm text-amber-900 leading-relaxed">{children}</p>
-    </div>
-  );
-}
-function FixCard({ number, title, time, tag, children }) {
-  return (
-    <div className="my-8 rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-      <div className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-indigo-50 to-slate-50 border-b border-gray-100">
-        <span className="w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-black flex items-center justify-center flex-shrink-0">
-          {number}
-        </span>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-gray-900 text-base leading-tight">
-            {title}
-          </h3>
-          {tag && (
-            <span className="text-xs text-indigo-500 font-semibold">{tag}</span>
-          )}
-        </div>
-        <span className="flex items-center gap-1.5 text-xs text-gray-400 whitespace-nowrap flex-shrink-0">
-          <FaClock className="text-xs" />
-          {time}
-        </span>
-      </div>
-      <div className="px-6 py-5 bg-white">{children}</div>
-    </div>
-  );
-}
-function CL({ items }) {
-  return (
-    <ul className="space-y-2 my-4">
-      {items.map((item, i) => (
-        <li key={i} className="flex items-start gap-2.5 text-sm text-gray-600">
-          <FaCircleCheck className="text-green-500 mt-0.5 flex-shrink-0" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-function SH({ id, children }) {
-  return (
-    <h2
-      id={id}
-      className="text-2xl font-extrabold text-gray-900 mt-12 mb-4 leading-tight tracking-tight scroll-mt-8"
-    >
-      {children}
-    </h2>
-  );
-}
-function P({ children }) {
-  return (
-    <p className="text-[15px] text-gray-600 leading-[1.85] my-4">{children}</p>
-  );
-}
-function IC({ children }) {
-  return (
-    <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-indigo-700">
-      {children}
-    </code>
-  );
-}
-function TOCBlock({ items }) {
-  return (
-    <nav className="my-8 rounded-2xl border border-indigo-100 bg-indigo-50 px-6 py-5">
-      <div className="flex items-center gap-2 mb-4">
-        <FaBookOpen className="text-indigo-600 text-sm" />
-        <span className="text-sm font-bold text-indigo-900 uppercase tracking-widest">
-          {"Table of Contents"}
-        </span>
-      </div>
-      <ol className="space-y-2">
-        {items.map(({ label, href }, i) => (
-          <li key={href} className="flex items-center gap-2.5">
-            <span className="text-xs font-bold text-indigo-400 w-5 flex-shrink-0 tabular-nums">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <a
-              href={href}
-              className="text-sm text-indigo-700 hover:text-indigo-900 hover:underline leading-snug"
-            >
-              {label}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
-}
-function FAQBlock({ items }) {
-  return (
-    <div className="space-y-3">
-      {items.map(({ q, a }) => (
-        <details
-          key={q}
-          className="group bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
-        >
-          <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none font-semibold text-gray-900 text-sm hover:text-indigo-600 transition-colors select-none">
-            {q}
-            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-gray-500 group-open:bg-indigo-100 group-open:text-indigo-600 transition-colors font-bold text-base leading-none">
-              <span className="group-open:hidden">{"+"}</span>
-              <span className="hidden group-open:inline">{"−"}</span>
-            </span>
-          </summary>
-          <div className="px-6 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50 pt-4">
-            {a}
-          </div>
-        </details>
-      ))}
-    </div>
-  );
-}
-function RelatedBlock({ items }) {
-  return (
-    <aside className="mt-16 pt-10 border-t border-gray-100">
-      <h2 className="text-lg font-bold text-gray-900 mb-5">
-        {"Related Articles"}
-      </h2>
-      <div className="grid sm:grid-cols-3 gap-4">
-        {items.map(({ tag, title, href, time }) => (
-          <Link
-            key={href}
-            href={href}
-            className="group block bg-slate-50 hover:bg-indigo-50 border border-gray-100 hover:border-indigo-200 rounded-2xl p-5 transition-all"
-          >
-            <span className="inline-block text-xs font-bold text-indigo-600 uppercase tracking-widest mb-2">
-              {tag}
-            </span>
-            <p className="text-sm font-semibold text-gray-900 group-hover:text-indigo-700 leading-snug mb-3">
-              {title}
-            </p>
-            <span className="flex items-center gap-1 text-xs text-gray-400">
-              <FaClock className="text-xs" />
-              {time}
-            </span>
-          </Link>
-        ))}
-      </div>
-    </aside>
-  );
-}
-function CTA({ title, desc }) {
-  return (
-    <div className="mt-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-700 px-8 py-8 text-center">
-      <p className="text-xs font-bold uppercase tracking-widest text-indigo-200 mb-2">
-        {"Need Expert Help?"}
-      </p>
-      <h2 className="text-xl font-extrabold text-white mb-3">{title}</h2>
-      <p className="text-indigo-200 text-sm mb-6 max-w-md mx-auto leading-relaxed">
-        {desc}
-      </p>
-      <Link
-        href="/contact-us"
-        className="inline-flex items-center gap-2 bg-white text-indigo-700 font-bold px-6 py-3 rounded-xl hover:bg-indigo-50 transition-all text-sm shadow-lg"
-      >
-        {"Talk to an Engineer"}
-        <FaArrowRight className="text-xs" />
-      </Link>
-    </div>
-  );
-}
-function Header({ tags, title, subtitle, sub, date, read, tech }) {
-  return (
-    <header className="mb-8">
-      <div className="flex flex-wrap items-center gap-3 mb-4">
-        {tags.map((t) => (
-          <span
-            key={t}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-indigo-50 text-indigo-600 border border-indigo-100"
-          >
-            <FaTag className="text-[10px]" />
-            {t}
-          </span>
-        ))}
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-green-50 text-green-700 border border-green-100">
-          {"2026 Updated"}
-        </span>
-      </div>
-      <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight mb-5">
-        {title}
-        <span className="block text-indigo-600">{subtitle}</span>
-      </h1>
-      {sub && <p className="text-sm text-gray-500 mb-4">{sub}</p>}
-      <div className="flex flex-wrap items-center gap-5 text-sm text-gray-400 pb-8 border-b border-gray-100">
-        <span className="flex items-center gap-1.5">
-          <FaCalendarDays className="text-xs" />
-          {date}
-        </span>
-        <span className="flex items-center gap-1.5">
-          <FaClock className="text-xs" />
-          {read}
-        </span>
-        <span className="flex items-center gap-1.5">
-          <FaCode className="text-xs" />
-          {tech}
-        </span>
-      </div>
-    </header>
-  );
-}
+function CodeBlock({ title, children }) { return (<div className="my-6 rounded-2xl overflow-hidden border border-slate-800 shadow-lg">{title && (<div className="flex items-center gap-2 px-4 py-2.5 bg-slate-800 border-b border-slate-700"><FaTerminal className="text-indigo-400 text-xs flex-shrink-0" /><span className="text-xs font-mono text-slate-300">{title}</span></div>)}<pre className="bg-slate-900 px-5 py-4 overflow-x-auto text-sm leading-relaxed"><code className="text-green-400 font-mono whitespace-pre">{children}</code></pre></div>); }
+function ErrorBlock({ children }) { return (<div className="my-6 rounded-2xl overflow-hidden border border-red-900 shadow-lg"><div className="flex items-center gap-2 px-4 py-2.5 bg-red-950 border-b border-red-900"><FaTriangleExclamation className="text-red-400 text-xs flex-shrink-0" /><span className="text-xs font-mono text-red-300">{"Error"}</span></div><pre className="bg-slate-900 px-5 py-4 overflow-x-auto text-sm leading-relaxed"><code className="text-red-400 font-mono whitespace-pre">{children}</code></pre></div>); }
+function TipBox({ children }) { return <div className="my-6 flex gap-3 bg-indigo-50 border border-indigo-100 rounded-2xl px-5 py-4"><FaLightbulb className="text-indigo-500 text-lg flex-shrink-0 mt-0.5" /><p className="text-sm text-indigo-900 leading-relaxed">{children}</p></div>; }
+function WarnBox({ children }) { return <div className="my-6 flex gap-3 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4"><FaTriangleExclamation className="text-amber-500 text-lg flex-shrink-0 mt-0.5" /><p className="text-sm text-amber-900 leading-relaxed">{children}</p></div>; }
+function FixCard({ number, title, time, tag, children }) { return (<div className="my-8 rounded-2xl border border-gray-100 shadow-sm overflow-hidden"><div className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-indigo-50 to-slate-50 border-b border-gray-100"><span className="w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-black flex items-center justify-center flex-shrink-0">{number}</span><div className="flex-1 min-w-0"><h3 className="font-bold text-gray-900 text-base leading-tight">{title}</h3>{tag && <span className="text-xs text-indigo-500 font-semibold">{tag}</span>}</div><span className="flex items-center gap-1.5 text-xs text-gray-400 whitespace-nowrap flex-shrink-0"><FaClock className="text-xs" />{time}</span></div><div className="px-6 py-5 bg-white">{children}</div></div>); }
+function CL({ items }) { return <ul className="space-y-2 my-4">{items.map((item, i) => (<li key={i} className="flex items-start gap-2.5 text-sm text-gray-600"><FaCircleCheck className="text-green-500 mt-0.5 flex-shrink-0" /><span>{item}</span></li>))}</ul>; }
+function SH({ id, children }) { return <h2 id={id} className="text-2xl font-extrabold text-gray-900 mt-12 mb-4 leading-tight tracking-tight scroll-mt-8">{children}</h2>; }
+function P({ children }) { return <p className="text-[15px] text-gray-600 leading-[1.85] my-4">{children}</p>; }
+function IC({ children }) { return <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-indigo-700">{children}</code>; }
+function TOCBlock({ items }) { return (<nav className="my-8 rounded-2xl border border-indigo-100 bg-indigo-50 px-6 py-5"><div className="flex items-center gap-2 mb-4"><FaBookOpen className="text-indigo-600 text-sm" /><span className="text-sm font-bold text-indigo-900 uppercase tracking-widest">{"Table of Contents"}</span></div><ol className="space-y-2">{items.map(({ label, href }, i) => (<li key={href} className="flex items-center gap-2.5"><span className="text-xs font-bold text-indigo-400 w-5 flex-shrink-0 tabular-nums">{String(i + 1).padStart(2, "0")}</span><a href={href} className="text-sm text-indigo-700 hover:text-indigo-900 hover:underline leading-snug">{label}</a></li>))}</ol></nav>); }
+function FAQBlock({ items }) { return (<div className="space-y-3">{items.map(({ q, a }) => (<details key={q} className="group bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"><summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none font-semibold text-gray-900 text-sm hover:text-indigo-600 transition-colors select-none">{q}<span className="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-gray-500 group-open:bg-indigo-100 group-open:text-indigo-600 transition-colors font-bold text-base leading-none"><span className="group-open:hidden">{"+"}</span><span className="hidden group-open:inline">{"−"}</span></span></summary><div className="px-6 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50 pt-4">{a}</div></details>))}</div>); }
+function RelatedBlock({ items }) { return (<aside className="mt-16 pt-10 border-t border-gray-100"><h2 className="text-lg font-bold text-gray-900 mb-5">{"Related Articles"}</h2><div className="grid sm:grid-cols-3 gap-4">{items.map(({ tag, title, href, time }) => (<Link key={href} href={href} className="group block bg-slate-50 hover:bg-indigo-50 border border-gray-100 hover:border-indigo-200 rounded-2xl p-5 transition-all"><span className="inline-block text-xs font-bold text-indigo-600 uppercase tracking-widest mb-2">{tag}</span><p className="text-sm font-semibold text-gray-900 group-hover:text-indigo-700 leading-snug mb-3">{title}</p><span className="flex items-center gap-1 text-xs text-gray-400"><FaClock className="text-xs" />{time}</span></Link>))}</div></aside>); }
+function CTA({ title, desc }) { return (<div className="mt-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-700 px-8 py-8 text-center"><p className="text-xs font-bold uppercase tracking-widest text-indigo-200 mb-2">{"Need Expert Help?"}</p><h2 className="text-xl font-extrabold text-white mb-3">{title}</h2><p className="text-indigo-200 text-sm mb-6 max-w-md mx-auto leading-relaxed">{desc}</p><Link href="/contact-us" className="inline-flex items-center gap-2 bg-white text-indigo-700 font-bold px-6 py-3 rounded-xl hover:bg-indigo-50 transition-all text-sm shadow-lg">{"Talk to an Engineer"}<FaArrowRight className="text-xs" /></Link></div>); }
+function Header({ tags, title, subtitle, sub, date, read, tech }) { return (<header className="mb-8"><div className="flex flex-wrap items-center gap-3 mb-4">{tags.map((t) => (<span key={t} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-indigo-50 text-indigo-600 border border-indigo-100"><FaTag className="text-[10px]" />{t}</span>))}<span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-green-50 text-green-700 border border-green-100">{"2026 Updated"}</span></div><h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight mb-5">{title}<span className="block text-indigo-600">{subtitle}</span></h1>{sub && <p className="text-sm text-gray-500 mb-4">{sub}</p>}<div className="flex flex-wrap items-center gap-5 text-sm text-gray-400 pb-8 border-b border-gray-100"><span className="flex items-center gap-1.5"><FaCalendarDays className="text-xs" />{date}</span><span className="flex items-center gap-1.5"><FaClock className="text-xs" />{read}</span><span className="flex items-center gap-1.5"><FaCode className="text-xs" />{tech}</span></div></header>); }
 
 export const metadata = {
-  title: "Supabase Email Confirmation Not Sending — Fixed [2026]",
-  description:
-    "Fix Supabase confirmation emails not being sent or delivered. Covers rate limiting, SMTP setup, email templates, spam folders, custom SMTP providers, and resending emails.",
-  keywords:
-    "supabase email confirmation not sending, supabase signup email not received, supabase confirmation email not working, supabase custom smtp 2026, supabase resend email",
-  alternates: {
-    canonical:
-      "https://softplix.com/category/supabase/error/supabase-email-confirmation-not-sending",
-  },
-  openGraph: {
-    title: "Supabase Email Confirmation Not Sending — Fixed [2026]",
-    description:
-      "Fix Supabase email confirmation — rate limits, custom SMTP, Resend, spam, templates.",
-    type: "article",
-    url: "https://softplix.com/category/supabase/error/supabase-email-confirmation-not-sending",
-  },
+  title: "Supabase Foreign Key Constraint Error — Fixed [2026]",
+  description: "Fix Supabase foreign key constraint violation errors. Covers insert order, cascade delete, orphaned rows, profiles table trigger, and ON DELETE behaviour.",
+  keywords: "supabase foreign key constraint error, supabase insert foreign key violation, supabase violates foreign key constraint, supabase cascade delete 2026, supabase profiles trigger",
+  alternates: { canonical: "https://softplix.com/category/supabase/error/supabase-foreign-key-constraint-error" },
+  openGraph: { title: "Supabase Foreign Key Constraint Error — Fixed [2026]", description: "Fix Supabase foreign key violations — insert order, cascade, profiles trigger, ON DELETE.", type: "article", url: "https://softplix.com/category/supabase/error/supabase-foreign-key-constraint-error" },
 };
 
 const TOC = [
-  { label: "Why Supabase confirmation emails don't arrive", href: "#why" },
-  {
-    label: "Fix 1 — Check the Supabase rate limit (2 emails/hour on free)",
-    href: "#fix-1",
-  },
-  { label: "Fix 2 — Configure custom SMTP with Resend", href: "#fix-2" },
-  { label: "Fix 3 — Configure custom SMTP with SendGrid", href: "#fix-3" },
-  { label: "Fix 4 — Fix email landing in spam folder", href: "#fix-4" },
-  {
-    label: "Fix 5 — Resend confirmation email programmatically",
-    href: "#fix-5",
-  },
+  { label: "What causes foreign key constraint violations in Supabase", href: "#why" },
+  { label: "Fix 1 — Insert parent row before child row", href: "#fix-1" },
+  { label: "Fix 2 — Fix user profile not created on signup", href: "#fix-2" },
+  { label: "Fix 3 — Set correct ON DELETE behaviour", href: "#fix-3" },
+  { label: "Fix 4 — Fix delete failing due to child rows", href: "#fix-4" },
+  { label: "Fix 5 — Find and fix orphaned rows", href: "#fix-5" },
   { label: "Prevention checklist", href: "#prevention" },
   { label: "FAQ", href: "#faq" },
 ];
 
 const FAQS = [
-  {
-    q: "Why is Supabase not sending confirmation emails?",
-    a: "The most common cause on the free plan is the built-in rate limit — Supabase only sends 2 emails per hour on the free tier. If you have tested signup multiple times, you may have hit this limit. The fix is to configure a custom SMTP provider like Resend or SendGrid, which removes this restriction.",
-  },
-  {
-    q: "What is the Supabase email rate limit on the free plan?",
-    a: "Supabase free tier allows 2 emails per hour using the built-in email service. For production or any serious development, you must connect a custom SMTP provider. The Pro plan increases this but custom SMTP is still recommended for reliability and deliverability.",
-  },
-  {
-    q: "Which SMTP providers work well with Supabase?",
-    a: "Resend is the most popular choice because it has a generous free tier (3,000 emails/month), excellent deliverability, and a simple API. SendGrid, Mailgun, Postmark, and AWS SES also work well. All are configured the same way in Supabase Dashboard → Project Settings → Authentication → SMTP Settings.",
-  },
-  {
-    q: "How do I resend a confirmation email in Supabase?",
-    a: "Call supabase.auth.resend({ type: 'signup', email: userEmail }) in your client code. This resends the confirmation email to the specified address. You can expose this as a button on your 'check your email' page for users who didn't receive it.",
-  },
-  {
-    q: "Can I customise the Supabase confirmation email template?",
-    a: "Yes. Go to Supabase Dashboard → Authentication → Email Templates. You can customise the HTML and subject line for confirmation emails, magic links, password reset, and invite emails. Use the {{ .ConfirmationURL }} variable to insert the confirmation link.",
-  },
-  {
-    q: "Why do Supabase emails go to spam?",
-    a: "Supabase's built-in email service sends from a shared domain (mail.supabase.io) with lower deliverability than a custom domain. Emails from shared sending domains are more likely to be marked as spam. Use a custom SMTP provider with your own domain and configure SPF, DKIM, and DMARC DNS records to improve deliverability.",
-  },
+  { q: "What is a foreign key constraint violation in Supabase?", a: "A foreign key constraint ensures that a value in one table's column must exist as a primary key in another table. A violation means you are trying to insert a row with a foreign key value that doesn't exist in the parent table — for example, inserting a post with user_id that doesn't exist in the users table." },
+  { q: "Why does Supabase say 'insert or update on table violates foreign key constraint'?", a: "This means you are inserting a row in the child table (e.g. posts) with a foreign key value (e.g. user_id) that does not exist in the parent table (e.g. users). Always insert or verify the parent row exists before inserting the child row." },
+  { q: "Why does my profiles table not get a row when a new user signs up?", a: "Supabase does not automatically create a profiles row when a user signs up. You must set up a PostgreSQL trigger function that fires on INSERT to auth.users and creates the corresponding profiles row. This is a common setup step that many tutorials skip." },
+  { q: "What is ON DELETE CASCADE in Supabase?", a: "ON DELETE CASCADE means that when a parent row is deleted, all child rows referencing it are automatically deleted too. Without CASCADE, deleting a parent row that has child rows fails with a foreign key constraint error. Add CASCADE to foreign keys where child rows should be cleaned up automatically." },
+  { q: "How do I delete a user and all their data in Supabase?", a: "Ensure all tables with user_id foreign keys have ON DELETE CASCADE set. Then delete the user from auth.users using supabaseAdmin.auth.admin.deleteUser(userId). Cascade will handle deleting all related rows automatically." },
+  { q: "What are orphaned rows in a database?", a: "Orphaned rows are child rows whose parent row no longer exists — typically created when the foreign key constraint was added after data was inserted, or when the parent was deleted without proper CASCADE. They cause inconsistencies and can break queries that JOIN parent and child tables." },
 ];
 
 function ArticleSchema() {
-  const s = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Supabase Email Confirmation Not Sending — Fixed [2026]",
-    author: { "@type": "Organization", name: "Softplix" },
-    publisher: {
-      "@type": "Organization",
-      name: "Softplix",
-      url: "https://softplix.com",
-    },
-    datePublished: "2026-01-01",
-    mainEntityOfPage:
-      "https://softplix.com/category/supabase/error/supabase-email-confirmation-not-sending",
-  };
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
-    />
-  );
+  const s = { "@context": "https://schema.org", "@type": "Article", headline: "Supabase Foreign Key Constraint Error — Fixed [2026]", author: { "@type": "Organization", name: "Softplix" }, publisher: { "@type": "Organization", name: "Softplix", url: "https://softplix.com" }, datePublished: "2026-01-01", mainEntityOfPage: "https://softplix.com/category/supabase/error/supabase-foreign-key-constraint-error" };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />;
 }
 function FAQSchema() {
-  const s = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map(({ q, a }) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
-  };
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
-    />
-  );
+  const s = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: FAQS.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />;
 }
 
 export default function Page() {
   return (
     <>
-      <ArticleSchema />
-      <FAQSchema />
+      <ArticleSchema /><FAQSchema />
       <main className="min-h-screen bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <Header
-            tags={["Supabase", "Email", "Error Fix"]}
-            title={"Supabase Email Confirmation Not Sending"}
-            subtitle={"— Custom SMTP Fix [2026]"}
-            sub={
-              "Also covers: free tier rate limits · Resend SMTP · SendGrid · spam folders · resend email · template customisation"
-            }
-            date={"January 2026"}
-            read={"6 min read"}
-            tech={"Supabase · Resend · SendGrid · SMTP"}
-          />
+          <Header tags={["Supabase", "PostgreSQL", "Error Fix"]} title={"Supabase Foreign Key Constraint Error"} subtitle={"— Violation Fixed [2026]"} sub={"Also covers: insert order · profiles trigger · ON DELETE CASCADE · orphaned rows · delete parent with children"} date={"January 2026"} read={"6 min read"} tech={"Supabase · PostgreSQL · SQL"} />
 
           <div className="my-6 rounded-2xl bg-red-50 border border-red-200 px-6 py-5">
-            <p className="text-sm font-bold text-red-800 mb-1 uppercase tracking-widest">
-              {"⚡ The Problem"}
-            </p>
-            <ErrorBlock>{`// signUp() returns no error — but user never receives email
-const { error } = await supabase.auth.signUp({ email, password })
-console.log(error)  // null
-
-// Common causes:
-// 1. Free tier rate limit (2 emails/hour) — most common
-// 2. Email landed in spam
-// 3. No custom SMTP configured for production`}</ErrorBlock>
-            <p className="text-sm font-bold text-green-800 mb-1 uppercase tracking-widest mt-4">
-              {"✅ Fix — configure custom SMTP (Resend recommended)"}
-            </p>
-            <CodeBlock title="Supabase Dashboard → Project Settings → Authentication → SMTP">{`SMTP Host:       smtp.resend.com
-SMTP Port:       465
-SMTP Username:   resend
-SMTP Password:   re_your_api_key_here
-Sender Email:    noreply@yourdomain.com
-Sender Name:     Your App Name`}</CodeBlock>
+            <p className="text-sm font-bold text-red-800 mb-1 uppercase tracking-widest">{"⚡ The Error"}</p>
+            <ErrorBlock>{`{
+  code: "23503",
+  message: "insert or update on table \"posts\" violates
+            foreign key constraint \"posts_user_id_fkey\"",
+  details: "Key (user_id)=(some-uuid) is not present in table \"users\"."
+}`}</ErrorBlock>
+            <p className="text-sm font-bold text-green-800 mb-1 uppercase tracking-widest mt-4">{"✅ Root cause — inserting child row before parent exists"}</p>
+            <CodeBlock title="Fix — always insert parent first, then child">{`// ✅ Step 1: ensure user/profile exists
+// ✅ Step 2: then insert the post with that user_id
+const { data: post } = await supabase
+  .from("posts")
+  .insert({ title: "Hello", user_id: user.id })  // user.id must exist in users`}</CodeBlock>
           </div>
 
           <TOCBlock items={TOC} />
 
-          <SH id="why">{"Why Supabase Confirmation Emails Don't Arrive"}</SH>
-          <P>
-            {
-              "Supabase's built-in email service has a strict rate limit of 2 emails per hour on the free plan. If you sign up, test password reset, and sign up again in the same hour, you may have exhausted the limit. The emails appear to be sent (no error returned) but are silently queued and dropped."
-            }
-          </P>
-          <P>
-            {
-              "For production, the built-in service also sends from a shared domain with lower deliverability. Custom SMTP with your own verified domain is essential for emails to reliably reach inboxes."
-            }
-          </P>
+          <SH id="why">{"What Causes Foreign Key Constraint Violations"}</SH>
+          <P>{"A foreign key is a column that references the primary key of another table. PostgreSQL enforces that the referenced value must exist — you cannot create a "}<IC>{"posts"}</IC>{" row with a "}<IC>{"user_id"}</IC>{" that doesn't exist in "}<IC>{"users"}</IC>{"."}</P>
+          <P>{"In Supabase, the most common scenarios are: inserting a post before the user's profile row is created, deleting a user without cleaning up their related data, or seeding data in the wrong order."}</P>
 
-          <FixCard
-            number="1"
-            title="Check the Rate Limit — Free Tier Sends Only 2 Emails/Hour"
-            time="1 min"
-            tag="Most common cause during development"
-          >
-            <P>
-              {
-                "If you have been testing signups and password resets in the same hour, you have likely hit the limit. Wait 1 hour and try again, or immediately configure custom SMTP to remove the limit entirely."
-              }
-            </P>
-            <CodeBlock title="Quick test — check if rate limit is the issue">{`// If this returns no error but email never arrives → rate limit hit
-const { data, error } = await supabase.auth.signUp({
-  email: "test@example.com",
-  password: "password123",
-})
+          <FixCard number="1" title="Insert Parent Row Before Child Row" time="2 min" tag="Root cause — wrong insert order">
+            <P>{"Always ensure the parent row exists before inserting child rows. In async code, await each operation before proceeding to the next."}</P>
+            <CodeBlock title="Correct insert order">{`// ❌ Wrong — inserting post before confirming user exists
+await supabase.from("posts").insert({ title, user_id: someId })
 
-// Solution: configure custom SMTP (see Fix 2 below)
-// or temporarily disable email confirmation for development:
-// Supabase Dashboard → Authentication → Providers → Email
-//   → toggle OFF "Confirm email"`}</CodeBlock>
-            <TipBox>
-              {
-                "During development, disable email confirmation entirely. Supabase Dashboard → Authentication → Providers → Email → turn off 'Confirm email'. Re-enable before going to production."
-              }
-            </TipBox>
+// ✅ Correct — verify user exists first
+const { data: { user } } = await supabase.auth.getUser()
+if (!user) throw new Error("Must be logged in")
+
+// Now safe to insert — user.id is guaranteed to exist in auth.users
+const { error } = await supabase
+  .from("posts")
+  .insert({ title, user_id: user.id })
+
+if (error) console.error(error.message)`}</CodeBlock>
           </FixCard>
 
-          <FixCard
-            number="2"
-            title="Configure Custom SMTP with Resend"
-            time="10 min"
-            tag="Recommended — free tier, excellent deliverability"
-          >
-            <P>
-              {
-                "Resend offers 3,000 emails/month free, has excellent deliverability, and integrates with Supabase in minutes. This removes the 2-email/hour limit completely."
-              }
-            </P>
-            <CodeBlock title="Step 1 — Set up Resend">{`# 1. Create account at resend.com
-# 2. Add and verify your domain (follow their DNS guide)
-# 3. Create an API key at resend.com/api-keys
-# 4. Copy the API key (starts with "re_")`}</CodeBlock>
-            <CodeBlock title="Step 2 — Configure in Supabase Dashboard">{`# Supabase Dashboard → Project Settings → Authentication → SMTP Settings
+          <FixCard number="2" title="Fix User Profile Not Created on Signup" time="5 min" tag="profiles table missing row — trigger setup">
+            <P>{"A very common pattern is to have a "}<IC>{"profiles"}</IC>{" table that stores extra user data, with a foreign key to "}<IC>{"auth.users"}</IC>{"  . Set up a PostgreSQL trigger to auto-create the profile row when a new user signs up."}</P>
+            <CodeBlock title="Supabase SQL Editor — create profiles trigger">{`-- Step 1: Create the profiles table
+CREATE TABLE profiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  username TEXT UNIQUE,
+  full_name TEXT,
+  avatar_url TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
 
-Enable Custom SMTP:  ✅ toggle ON
+-- Step 2: Enable RLS on profiles
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
-SMTP Host:           smtp.resend.com
-SMTP Port:           465
-SMTP Username:       resend
-SMTP Password:       re_xxxxxxxxxxxxxxxxxxxx  (your Resend API key)
-Sender Email:        noreply@yourdomain.com   (must be your verified domain)
-Sender Name:         Your App Name
+-- Step 3: Create the trigger function
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  INSERT INTO public.profiles (id, full_name, avatar_url)
+  VALUES (
+    NEW.id,
+    NEW.raw_user_meta_data ->> 'full_name',
+    NEW.raw_user_meta_data ->> 'avatar_url'
+  );
+  RETURN NEW;
+END;
+$$;
 
-# Click "Save" — then test with a signup`}</CodeBlock>
-            <CodeBlock title="Step 3 — Test the SMTP setup">{`# Supabase Dashboard has a "Send test email" button in SMTP settings
-# Or test via your app signup flow
-# Emails should now arrive immediately with no rate limit`}</CodeBlock>
+-- Step 4: Attach trigger to auth.users INSERT
+CREATE OR REPLACE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();`}</CodeBlock>
+            <TipBox>{"After adding this trigger, every new Supabase signup automatically creates a corresponding profiles row. Foreign key violations on the profiles table are eliminated."}</TipBox>
           </FixCard>
 
-          <FixCard
-            number="3"
-            title="Configure Custom SMTP with SendGrid"
-            time="10 min"
-            tag="Alternative — enterprise-grade deliverability"
-          >
-            <CodeBlock title="SendGrid SMTP settings for Supabase">{`# 1. Create account at sendgrid.com
-# 2. Settings → Sender Authentication → Domain Authentication
-#    (verify your sending domain — required for production)
-# 3. Settings → API Keys → Create API Key (Full Access or Mail Send only)
+          <FixCard number="3" title="Set Correct ON DELETE Behaviour" time="3 min" tag="Choose CASCADE, SET NULL, or RESTRICT">
+            <P>{"When defining foreign keys, choose the right "}<IC>{"ON DELETE"}</IC>{" behaviour for your data model."}</P>
+            <CodeBlock title="ON DELETE options — when to use each">{`-- CASCADE: delete child rows automatically when parent is deleted
+-- Use for: posts, comments, files owned by a user
+ALTER TABLE posts
+  ADD CONSTRAINT posts_user_id_fkey
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
 
-# Supabase Dashboard → Project Settings → Authentication → SMTP Settings:
-SMTP Host:           smtp.sendgrid.net
-SMTP Port:           587
-SMTP Username:       apikey                    (literal string "apikey")
-SMTP Password:       SG.xxxxxxxxxxxxxxxxxx     (your SendGrid API key)
-Sender Email:        noreply@yourdomain.com
-Sender Name:         Your App Name`}</CodeBlock>
+-- SET NULL: set the FK column to NULL when parent is deleted
+-- Use for: optional relationships (e.g. post assigned to deleted category)
+ALTER TABLE posts
+  ADD CONSTRAINT posts_category_id_fkey
+  FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL;
+
+-- RESTRICT (default): prevent deletion if child rows exist
+-- Use for: critical references where data must be explicitly cleaned up first
+ALTER TABLE orders
+  ADD CONSTRAINT orders_product_id_fkey
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE RESTRICT;`}</CodeBlock>
           </FixCard>
 
-          <FixCard
-            number="4"
-            title="Fix Emails Landing in Spam"
-            time="15 min"
-            tag="Emails sending but not reaching inbox"
-          >
-            <P>
-              {
-                "If emails send but land in spam, the issue is deliverability — your sending domain lacks proper DNS authentication records."
-              }
-            </P>
-            <CodeBlock title="Required DNS records for email deliverability">{`# Add these DNS records at your domain registrar
-# (Resend / SendGrid provide exact values in their dashboard)
+          <FixCard number="4" title="Fix Delete Failing Due to Child Rows" time="3 min" tag="Cannot delete parent row — RESTRICT blocking">
+            <P>{"If you get a foreign key error when trying to DELETE a row, child rows are referencing it. Either add CASCADE to the foreign key, or delete child rows first."}</P>
+            <CodeBlock title="Delete children before parent (without CASCADE)">{`// Option A: delete children first, then parent
+async function deleteUserAndData(userId: string) {
+  // Delete in reverse dependency order
+  await supabase.from("comments").delete().eq("user_id", userId)
+  await supabase.from("posts").delete().eq("user_id", userId)
+  await supabase.from("profiles").delete().eq("id", userId)
 
-# 1. SPF — authorises your SMTP provider to send on your behalf
-TXT  @    "v=spf1 include:_spf.resend.com ~all"
+  // Finally delete from auth.users (requires service role)
+  await supabaseAdmin.auth.admin.deleteUser(userId)
+}
 
-# 2. DKIM — cryptographically signs outgoing emails
-CNAME  resend._domainkey  resend._domainkey.yourdomain.com.dkim.resend.com
-
-# 3. DMARC — tells mail servers what to do with failed SPF/DKIM
-TXT  _dmarc  "v=DMARC1; p=quarantine; rua=mailto:admin@yourdomain.com"
-
-# After adding DNS records, allow 24-48 hours for propagation
-# Then verify at: mail-tester.com or mxtoolbox.com`}</CodeBlock>
-            <WarnBox>
-              {
-                "Always test your email deliverability score at mail-tester.com before going to production. A score below 8/10 means emails will frequently land in spam."
-              }
-            </WarnBox>
+// Option B: add ON DELETE CASCADE (better long-term)
+-- Run in SQL Editor:
+ALTER TABLE posts DROP CONSTRAINT posts_user_id_fkey;
+ALTER TABLE posts ADD CONSTRAINT posts_user_id_fkey
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;`}</CodeBlock>
           </FixCard>
 
-          <FixCard
-            number="5"
-            title="Resend Confirmation Email Programmatically"
-            time="2 min"
-            tag="'Resend confirmation email' button for users"
-          >
-            <P>
-              {
-                "Add a resend button to your 'check your email' page so users who didn't receive the email can request a new one."
-              }
-            </P>
-            <CodeBlock title="components/resend-confirmation.tsx">{`"use client"
+          <FixCard number="5" title="Find and Fix Orphaned Rows" time="3 min" tag="Child rows whose parent no longer exists">
+            <P>{"Orphaned rows exist when foreign key constraints were added after data was already inserted, or when CASCADE was not configured. Use SQL to find and clean them up."}</P>
+            <CodeBlock title="Find orphaned rows">{`-- Find posts whose user_id doesn't exist in auth.users
+SELECT p.*
+FROM posts p
+LEFT JOIN auth.users u ON p.user_id = u.id
+WHERE u.id IS NULL;
 
-import { createClient } from "@/lib/supabase/client"
-import { useState } from "react"
+-- Delete orphaned posts
+DELETE FROM posts
+WHERE user_id NOT IN (SELECT id FROM auth.users);
 
-export function ResendConfirmationButton({ email }: { email: string }) {
-  const supabase = createClient()
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
+-- Find orphaned comments (posts that don't exist)
+SELECT c.*
+FROM comments c
+LEFT JOIN posts p ON c.post_id = p.id
+WHERE p.id IS NULL;
 
-  async function handleResend() {
-    setStatus("sending")
+-- Add constraint to prevent future orphans
+ALTER TABLE posts
+  ADD CONSTRAINT posts_user_id_fkey
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE
+  NOT VALID;  -- skip validation of existing rows
 
-    const { error } = await supabase.auth.resend({
-      type: "signup",
-      email,
-      options: {
-        emailRedirectTo: \`\${window.location.origin}/auth/callback\`,
-      },
-    })
-
-    setStatus(error ? "error" : "sent")
-  }
-
-  return (
-    <div>
-      <button onClick={handleResend} disabled={status === "sending" || status === "sent"}>
-        {status === "idle" && "Resend confirmation email"}
-        {status === "sending" && "Sending..."}
-        {status === "sent" && "Email sent! Check your inbox"}
-        {status === "error" && "Failed — try again"}
-      </button>
-      {status === "sent" && <p>Also check your spam folder.</p>}
-    </div>
-  )
-}`}</CodeBlock>
+-- Then validate when ready (runs in background):
+ALTER TABLE posts VALIDATE CONSTRAINT posts_user_id_fkey;`}</CodeBlock>
           </FixCard>
 
           <SH id="prevention">{"Prevention"}</SH>
-          <CL
-            items={[
-              "Configure custom SMTP before testing signup more than twice — the free tier limit is 2 emails/hour",
-              "Use Resend with a verified domain as your SMTP provider — simplest setup with best deliverability",
-              "Add SPF, DKIM, and DMARC DNS records to ensure emails reach inboxes, not spam",
-              "Disable email confirmation during development to remove all email dependency from your dev workflow",
-              "Add a 'Resend confirmation email' button to your check-your-email page",
-              "Test email deliverability at mail-tester.com before launch",
-            ]}
-          />
+          <CL items={[
+            "Set up the profiles trigger immediately after creating your Supabase project — before any user signs up",
+            "Always use ON DELETE CASCADE for user-owned data (posts, comments, files, profiles)",
+            "Seed data in dependency order — parent tables before child tables",
+            "Always verify the logged-in user exists with getUser() before inserting related data",
+            "Use NOT VALID when adding constraints to existing tables, then VALIDATE separately",
+            "Regularly run orphan queries in staging environments to catch data integrity issues early",
+          ]} />
 
           <SH id="faq">{"Frequently Asked Questions"}</SH>
           <FAQBlock items={FAQS} />
 
-          <RelatedBlock
-            items={[
-              {
-                tag: "Supabase",
-                title: "Fix: Supabase user null after login",
-                href: "/category/supabase/error/supabase-auth-user-null-after-login",
-                time: "7 min read",
-              },
-              {
-                tag: "Supabase",
-                title: "Fix: Supabase OAuth redirect error",
-                href: "/category/supabase/error/supabase-oauth-redirect-error",
-                time: "7 min read",
-              },
-              {
-                tag: "Supabase",
-                title: "Fix: Supabase session not persisting",
-                href: "/category/supabase/error/supabase-auth-session-not-persisting",
-                time: "7 min read",
-              },
-            ]}
-          />
-          <CTA
-            title={"We Set Up Supabase Email for Production"}
-            desc={
-              "Softplix engineers configure Supabase with custom SMTP, domain verification, and email templates — ready for production from day one. Let us help."
-            }
-          />
+          <RelatedBlock items={[
+            { tag: "Supabase", title: "Fix: Supabase RLS blocking queries", href: "/category/supabase/error/supabase-row-level-security-blocking", time: "7 min read" },
+            { tag: "Supabase", title: "Fix: Supabase storage upload error", href: "/category/supabase/error/supabase-storage-upload-error", time: "6 min read" },
+            { tag: "Prisma", title: "Fix: Prisma P2002 unique constraint failed", href: "/category/prisma/error/prisma-p2002-unique-constraint-failed", time: "6 min read" },
+          ]} />
+          <CTA title={"We Design Robust Supabase Database Schemas"} desc={"Softplix engineers build Supabase schemas with correct foreign keys, triggers, RLS, and cascade behaviour for production apps. Let us help."} />
         </div>
       </main>
     </>
