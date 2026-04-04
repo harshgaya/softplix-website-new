@@ -3,14 +3,10 @@ import "./globals.css";
 import Header from "@/components/navigation/header";
 import Footer from "@/components/footer/footer";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 
-const geistSans = Geist({
+const geistSans = Inter({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -59,11 +55,6 @@ export const metadata = {
   },
 };
 
-export const viewport = {
-  width: "device-width",
-  initialScale: 1,
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -81,9 +72,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable}  antialiased`}>
         <Header />
         {children}
         <Footer />
