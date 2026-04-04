@@ -678,19 +678,19 @@ function ScrollTracker({ onScroll }: { onScroll: (y: number) => void }) {
               {
                 tag: "React",
                 title: "Fix: React useMemo not working",
-                href: "/category/react/error/react-usememo-not-working",
+                href: "react-usememo-not-working",
                 time: "6 min read",
               },
               {
                 tag: "React",
                 title: "Fix: React lazy and Suspense not working",
-                href: "/category/react/error/react-lazy-suspense-not-working",
+                href: "react-lazy-suspense-not-working",
                 time: "5 min read",
               },
               {
                 tag: "React",
                 title: "Fix: React forwardRef not working",
-                href: "/category/react/error/react-forwardref-not-working",
+                href: "react-forwardref-not-working",
                 time: "5 min read",
               },
             ]}

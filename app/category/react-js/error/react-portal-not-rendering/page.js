@@ -656,13 +656,13 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
               {
                 tag: "React",
                 title: "Fix: React lazy and Suspense not working",
-                href: "/category/react/error/react-lazy-suspense-not-working",
+                href: "react-lazy-suspense-not-working",
                 time: "6 min read",
               },
               {
                 tag: "React",
                 title: "Fix: React forwardRef not working",
-                href: "/category/react/error/react-forwardref-not-working",
+                href: "react-forwardref-not-working",
                 time: "5 min read",
               },
               {

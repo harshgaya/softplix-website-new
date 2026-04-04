@@ -651,19 +651,19 @@ const element = useMemo(() => <MyComponent prop={value} />, [value])
               {
                 tag: "React",
                 title: "Fix: React useCallback infinite loop",
-                href: "/category/react/error/react-usecallback-infinite-loop",
+                href: "react-usecallback-infinite-loop",
                 time: "6 min read",
               },
               {
                 tag: "React",
                 title: "Fix: React lazy and Suspense not working",
-                href: "/category/react/error/react-lazy-suspense-not-working",
+                href: "react-lazy-suspense-not-working",
                 time: "5 min read",
               },
               {
                 tag: "TanStack Query",
                 title: "Fix: TanStack Query staleTime not working",
-                href: "/category/tanstack/error/tanstack-query-stale-time-not-working",
+                href: "tanstack-query-stale-time-not-working",
                 time: "6 min read",
               },
             ]}

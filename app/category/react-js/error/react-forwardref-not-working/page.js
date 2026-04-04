@@ -666,13 +666,13 @@ function Form() {
               {
                 tag: "React",
                 title: "Fix: React portal not rendering",
-                href: "/category/react/error/react-portal-not-rendering",
+                href: "react-portal-not-rendering",
                 time: "5 min read",
               },
               {
                 tag: "React",
                 title: "Fix: React useMemo not working",
-                href: "/category/react/error/react-usememo-not-working",
+                href: "react-usememo-not-working",
                 time: "6 min read",
               },
               {
