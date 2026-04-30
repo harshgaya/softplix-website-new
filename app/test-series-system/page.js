@@ -857,7 +857,7 @@ export default function TestSeriesPage() {
           </div>
 
           {/* Screenshot placeholder */}
-          <div className="bg-slate-100 border-2 border-dashed border-slate-300 rounded-2xl aspect-video flex items-center justify-center text-center p-8">
+          {/* <div className="bg-slate-100 border-2 border-dashed border-slate-300 rounded-2xl aspect-video flex items-center justify-center text-center p-8">
             <div>
               <div className="text-5xl mb-3">📸</div>
               <p className="text-slate-500 font-semibold">
@@ -867,7 +867,7 @@ export default function TestSeriesPage() {
                 Replace this div with an &lt;Image /&gt; of your result screen
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
