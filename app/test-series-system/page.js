@@ -663,7 +663,7 @@ export default function TestSeriesPage() {
               href="#contact"
               className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-base rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 transition-all no-underline"
             >
-              🚀 Book My Test Series
+              Book My Test Series
             </a>
           </div>
         </div>
