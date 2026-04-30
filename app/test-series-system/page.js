@@ -1,4 +1,5 @@
 "use client";
+import ReactPixel from "react-facebook-pixel";
 
 import { useState, useEffect, useRef } from "react";
 
@@ -75,6 +76,7 @@ function DemoFormInline() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
+      ReactPixel.track("Lead");
       setSuccess(true);
       setForm({ name: "", phone: "", institute: "", students: "", exam: "" });
     } catch (err) {

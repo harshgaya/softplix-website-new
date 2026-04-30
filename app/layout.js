@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/navigation/header";
 import Footer from "@/components/footer/footer";
 import Script from "next/script";
+import PixelInit from "@/components/navigation/pixel-init";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,6 +64,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <PixelInit />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16812620227"
           strategy="afterInteractive"
