@@ -902,17 +902,6 @@ export default function TestSeriesPage() {
             ))}
           </div>
           {/* Dashboard screenshot placeholder */}
-          <div className="bg-white/5 border-2 border-dashed border-white/20 rounded-2xl aspect-video flex items-center justify-center text-center p-8">
-            <div>
-              <div className="text-5xl mb-3">🖥️</div>
-              <p className="text-white/60 font-semibold">
-                Add Dashboard Screenshot Here
-              </p>
-              <p className="text-xs text-white/30 mt-1">
-                Replace with &lt;Image /&gt; of your admin dashboard
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1028,31 +1017,6 @@ export default function TestSeriesPage() {
           </div>
         </div>
       </section>
-
-      {/* ── FOOTER ── */}
-      <footer className="bg-slate-900 py-10 px-5 text-center border-t border-slate-800">
-        <div className="text-xl font-extrabold text-white mb-4">
-          RB <span className="text-indigo-400">Academy</span>
-        </div>
-        <div className="flex flex-wrap gap-6 justify-center mb-4">
-          {[
-            ["Features", "#features"],
-            ["Book My Test Series", "#contact"],
-            ["+91 93041 36129", "tel:+919304136129"],
-          ].map(([label, href]) => (
-            <a
-              key={label}
-              href={href}
-              className="text-xs text-slate-500 hover:text-indigo-400 transition-colors no-underline"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-        <p className="text-xs text-slate-600">
-          © {new Date().getFullYear()} RB Academy. All rights reserved.
-        </p>
-      </footer>
 
       {/* ── WHATSAPP FLOAT ── */}
       <a
