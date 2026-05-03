@@ -34,7 +34,7 @@ export const metadata = {
 
     images: [
       {
-        url: "https://softplix.com/demos/test-series-image.png", // ✅ absolute URL (IMPORTANT)
+        url: "https://softplix.com/demos/test-system.png",
         width: 1200,
         height: 630,
         alt: "Test Series System for Coaching Institutes",
@@ -49,14 +49,12 @@ export const metadata = {
     title: "Test Series System for Coaching Institutes",
     description:
       "Run your own test series, track performance, and grow your coaching institute with SoftPlix.",
-    images: [
-      "https://softplix.com/demos/test-series-image.png", // ✅ absolute URL
-    ],
+    images: ["https://softplix.com/demos/test-system.png"],
   },
 
   icons: {
-    icon: "https://softplix.com/navigation/logo.png",
-    apple: "https://softplix.com/navigation/logo.png",
+    icon: "https://softplix.com/demos/test-system.png",
+    apple: "https://softplix.com/demos/test-system.png",
   },
 
   alternates: {
