@@ -479,6 +479,58 @@ export default function TestSeriesPage() {
           Claim Now →
         </a>
       </div>
+      <section className="py-20 px-5 bg-slate-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="inline-block bg-indigo-50 text-indigo-600 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
+            Live Demo
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
+            See How This Test Series System Works
+          </h2>
+          <p className="text-lg text-slate-500 max-w-xl mx-auto mb-10">
+            This is a real test system — not a concept. Students attempt tests,
+            submit answers, and get instant results with rank.
+          </p>
+          {/* Video embed placeholder */}
+          <div className="relative w-full rounded-2xl overflow-hidden border-2 border-indigo-200 shadow-2xl shadow-indigo-500/15 bg-slate-900 aspect-video flex items-center justify-center">
+            {/* Replace src with your real YouTube or video URL */}
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/qoZFXZzplKE"
+              title="Test Series Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+            {/* <div className="text-center text-white p-10">
+              <div className="w-20 h-20 rounded-full bg-indigo-600/80 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-indigo-600 transition-colors">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-10 h-10 fill-white ml-1.5"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <p className="text-lg font-bold text-white">
+                Demo Video Coming Soon
+              </p>
+              <p className="text-sm text-slate-400 mt-1">
+                Replace this with your YouTube embed URL
+              </p>
+            </div> */}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-4 justify-center">
+            <a
+              href="https://wa.me/919304136129?text=I%20checked%20your%20demo%20and%20want%20this%20test%20series%20system.%20Please%20guide%20me."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
+            >
+              <WaIcon />
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* ── HERO ── */}
       <section className="px-5 pt-12 pb-16 bg-gradient-to-b from-indigo-50 via-slate-50 to-white relative overflow-hidden">
@@ -622,55 +674,6 @@ export default function TestSeriesPage() {
       </section>
 
       {/* ── VIDEO DEMO ── */}
-      <section className="py-20 px-5 bg-slate-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-block bg-indigo-50 text-indigo-600 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
-            Live Demo
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
-            See How This Test Series System Works
-          </h2>
-          <p className="text-lg text-slate-500 max-w-xl mx-auto mb-10">
-            This is a real test system — not a concept. Students attempt tests,
-            submit answers, and get instant results with rank.
-          </p>
-          {/* Video embed placeholder */}
-          <div className="relative w-full rounded-2xl overflow-hidden border-2 border-indigo-200 shadow-2xl shadow-indigo-500/15 bg-slate-900 aspect-video flex items-center justify-center">
-            {/* Replace src with your real YouTube or video URL */}
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/qoZFXZzplKE"
-              title="Test Series Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-            {/* <div className="text-center text-white p-10">
-              <div className="w-20 h-20 rounded-full bg-indigo-600/80 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-indigo-600 transition-colors">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="w-10 h-10 fill-white ml-1.5"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <p className="text-lg font-bold text-white">
-                Demo Video Coming Soon
-              </p>
-              <p className="text-sm text-slate-400 mt-1">
-                Replace this with your YouTube embed URL
-              </p>
-            </div> */}
-          </div>
-          <div className="mt-8 flex flex-wrap gap-4 justify-center">
-            <a
-              href="#contact"
-              className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-base rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 transition-all no-underline"
-            >
-              Book My Test Series
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* ── PROBLEM ── */}
       <section className="py-20 px-5 bg-white">
