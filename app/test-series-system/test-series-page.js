@@ -479,7 +479,7 @@ export default function TestSeriesPage() {
           Claim Now →
         </a>
       </div>
-      <section className="py-20 px-5 bg-slate-50">
+      <section className="py-5 px-5 bg-slate-50">
         <div className="max-w-4xl mx-auto text-center">
           <span className="inline-block bg-indigo-50 text-indigo-600 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
             Live Demo
