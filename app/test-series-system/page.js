@@ -639,7 +639,7 @@ export default function TestSeriesPage() {
             {/* Replace src with your real YouTube or video URL */}
             <iframe
               className="w-full h-full"
-              src="https://www.youtube.com/embed/LqUhgk3eoQo"
+              src="https://www.youtube.com/embed/qoZFXZzplKE"
               title="Test Series Demo"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
