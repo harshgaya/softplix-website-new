@@ -191,12 +191,15 @@ function DemoFormInline() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => {
-            e.preventDefault();
-            window.gtag_report_conversion(
-              "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
-            );
+            // fire conversion first
+            if (typeof window !== "undefined" && window.gtag) {
+              window.gtag("event", "conversion", {
+                send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
+              });
+            }
+
+            // DO NOT prevent default (important)
           }}
-          className="flex items-center mt-5 text-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
         >
           <svg
             viewBox="0 0 24 24"
@@ -368,12 +371,15 @@ function ContactForm() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => {
-            e.preventDefault();
-            window.gtag_report_conversion(
-              "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
-            );
+            // fire conversion first
+            if (typeof window !== "undefined" && window.gtag) {
+              window.gtag("event", "conversion", {
+                send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
+              });
+            }
+
+            // DO NOT prevent default (important)
           }}
-          className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
         >
           <svg
             viewBox="0 0 24 24"
@@ -536,12 +542,15 @@ export default function TestSeriesPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => {
-                e.preventDefault();
-                window.gtag_report_conversion(
-                  "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
-                );
+                // fire conversion first
+                if (typeof window !== "undefined" && window.gtag) {
+                  window.gtag("event", "conversion", {
+                    send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
+                  });
+                }
+
+                // DO NOT prevent default (important)
               }}
-              className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
             >
               💬 WhatsApp to Buy
             </a>
@@ -640,12 +649,15 @@ export default function TestSeriesPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => {
-                    e.preventDefault();
-                    window.gtag_report_conversion(
-                      "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
-                    );
+                    // fire conversion first
+                    if (typeof window !== "undefined" && window.gtag) {
+                      window.gtag("event", "conversion", {
+                        send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
+                      });
+                    }
+
+                    // DO NOT prevent default (important)
                   }}
-                  className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
                 >
                   💬 WhatsApp to Buy
                 </a>
@@ -966,12 +978,15 @@ export default function TestSeriesPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => {
-                e.preventDefault();
-                window.gtag_report_conversion(
-                  "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
-                );
+                // fire conversion first
+                if (typeof window !== "undefined" && window.gtag) {
+                  window.gtag("event", "conversion", {
+                    send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
+                  });
+                }
+
+                // DO NOT prevent default (important)
               }}
-              className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
             >
               💬 WhatsApp to Buy
             </a>
@@ -1034,12 +1049,15 @@ export default function TestSeriesPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => {
-                e.preventDefault();
-                window.gtag_report_conversion(
-                  "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
-                );
+                // fire conversion first
+                if (typeof window !== "undefined" && window.gtag) {
+                  window.gtag("event", "conversion", {
+                    send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
+                  });
+                }
+
+                // DO NOT prevent default (important)
               }}
-              className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
             >
               💬 WhatsApp to Buy
             </a>
@@ -1059,12 +1077,15 @@ export default function TestSeriesPage() {
         target="_blank"
         rel="noopener noreferrer"
         onClick={(e) => {
-          e.preventDefault();
-          window.gtag_report_conversion(
-            "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
-          );
+          // fire conversion first
+          if (typeof window !== "undefined" && window.gtag) {
+            window.gtag("event", "conversion", {
+              send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
+            });
+          }
+
+          // DO NOT prevent default (important)
         }}
-        className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
       >
         <WaIcon />
         <style>{`
