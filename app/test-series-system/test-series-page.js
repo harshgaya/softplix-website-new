@@ -187,10 +187,16 @@ function DemoFormInline() {
           🔒 No payment now. Just a quick call to understand your needs.
         </p>
         <a
-          href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20a%20demo%20of%20the%20Test%20Series%20System."
+          href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-[#25d366] text-white text-sm font-bold rounded-xl px-5 py-2.5 hover:bg-[#20bb5a] transition-colors no-underline"
+          onClick={(e) => {
+            e.preventDefault();
+            window.gtag_report_conversion(
+              "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
+            );
+          }}
+          className="flex items-center mt-5 text-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
         >
           <svg
             viewBox="0 0 24 24"
@@ -358,10 +364,16 @@ function ContactForm() {
           {loading ? "Booking…" : "🚀 Book My Test Series"}
         </button>
         <a
-          href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20a%20demo%20of%20the%20Test%20Series%20System."
+          href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full flex items-center justify-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-8 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
+          onClick={(e) => {
+            e.preventDefault();
+            window.gtag_report_conversion(
+              "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
+            );
+          }}
+          className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
         >
           <svg
             viewBox="0 0 24 24"
@@ -520,13 +532,18 @@ export default function TestSeriesPage() {
           </div>
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <a
-              href="https://wa.me/919304136129?text=I%20checked%20your%20demo%20and%20want%20this%20test%20series%20system.%20Please%20guide%20me."
+              href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => {
+                e.preventDefault();
+                window.gtag_report_conversion(
+                  "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
+                );
+              }}
               className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
             >
-              <WaIcon />
-              WhatsApp Us
+              💬 WhatsApp to Buy
             </a>
           </div>
         </div>
@@ -619,13 +636,18 @@ export default function TestSeriesPage() {
                   🚀 Book My Test Series
                 </a>
                 <a
-                  href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20a%20demo%20of%20the%20Test%20Series%20System."
+                  href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.gtag_report_conversion(
+                      "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
+                    );
+                  }}
                   className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
                 >
-                  <WaIcon />
-                  WhatsApp Us
+                  💬 WhatsApp to Buy
                 </a>
               </div>
             </div>
@@ -940,13 +962,18 @@ export default function TestSeriesPage() {
               🚀 Book My Test Series – 50% OFF
             </a>
             <a
-              href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20claim%2050%25%20OFF%20on%20the%20Test%20Series%20System."
+              href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-8 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
+              onClick={(e) => {
+                e.preventDefault();
+                window.gtag_report_conversion(
+                  "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
+                );
+              }}
+              className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
             >
-              <WaIcon />
-              WhatsApp Claim
+              💬 WhatsApp to Buy
             </a>
           </div>
         </div>
@@ -1003,13 +1030,18 @@ export default function TestSeriesPage() {
               🚀 Book My Test Series
             </a>
             <a
-              href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20a%20demo%20of%20the%20Test%20Series%20System."
+              href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-8 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
+              onClick={(e) => {
+                e.preventDefault();
+                window.gtag_report_conversion(
+                  "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
+                );
+              }}
+              className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
             >
-              <WaIcon />
-              WhatsApp Demo
+              💬 WhatsApp to Buy
             </a>
             <a
               href="tel:+919304136129"
@@ -1023,12 +1055,16 @@ export default function TestSeriesPage() {
 
       {/* ── WHATSAPP FLOAT ── */}
       <a
-        href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20a%20demo%20of%20the%20Test%20Series%20System."
+        href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
         target="_blank"
         rel="noopener noreferrer"
-        title="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25d366] flex items-center justify-center shadow-lg shadow-green-500/40 hover:scale-110 transition-transform"
-        style={{ animation: "wa-pulse 2.5s infinite" }}
+        onClick={(e) => {
+          e.preventDefault();
+          window.gtag_report_conversion(
+            "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.",
+          );
+        }}
+        className="flex items-center gap-2 bg-[#25d366] text-white font-bold text-base rounded-xl px-7 py-4 hover:bg-[#20bb5a] transition-colors no-underline"
       >
         <WaIcon />
         <style>{`
