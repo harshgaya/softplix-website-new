@@ -2,7 +2,66 @@
 
 import { useState, useEffect, useRef } from "react";
 
-/* ─── Animated Counter ─────────────────────────────────────────────── */
+const WHATSAPP_URL =
+  "https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details.";
+const GOOGLE_CONVERSION_ID = "AW-16812620227/X5haCPyz3qccEMPz8NA-";
+
+function fireGoogleConversion() {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "conversion", {
+      send_to: GOOGLE_CONVERSION_ID,
+    });
+  }
+}
+
+function fireFacebookLead() {
+  if (typeof window !== "undefined") {
+    import("react-facebook-pixel")
+      .then((ReactPixel) => {
+        ReactPixel.default.track("Lead");
+      })
+      .catch(() => {});
+  }
+}
+
+function WhatsAppIcon({ className = "w-5 h-5" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={`${className} fill-current`}
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
+
+function WhatsAppButton({
+  children = "Chat on WhatsApp",
+  size = "md",
+  fullWidth = false,
+  className = "",
+}) {
+  const sizes = {
+    sm: "px-5 py-2.5 text-sm",
+    md: "px-7 py-3.5 text-base",
+    lg: "px-8 py-4 text-base",
+  };
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={fireGoogleConversion}
+      className={`inline-flex items-center justify-center gap-2.5 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-lg shadow-green-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-green-500/40 transition-all no-underline ${sizes[size]} ${fullWidth ? "w-full" : ""} ${className}`}
+    >
+      <WhatsAppIcon className="w-5 h-5" />
+      <span>{children}</span>
+    </a>
+  );
+}
+
 function Counter({ end, suffix = "" }) {
   const [val, setVal] = useState(0);
   const ref = useRef(null);
@@ -32,7 +91,6 @@ function Counter({ end, suffix = "" }) {
   );
 }
 
-/* ─── Demo Form (inline in hero) ──────────────────────────────────── */
 function DemoFormInline() {
   const [form, setForm] = useState({
     name: "",
@@ -75,9 +133,10 @@ function DemoFormInline() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
-      import("react-facebook-pixel").then((ReactPixel) => {
-        ReactPixel.default.track("Lead");
-      });
+
+      fireGoogleConversion();
+      fireFacebookLead();
+
       setSuccess(true);
       setForm({ name: "", phone: "", institute: "", students: "", exam: "" });
     } catch (err) {
@@ -97,7 +156,7 @@ function DemoFormInline() {
       <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
         <div className="text-5xl mb-4">🎉</div>
         <div className="text-xl font-bold text-green-800 mb-2">
-          {"You're In! 🎉"}
+          {"You're In!"}
         </div>
         <p className="text-green-700 text-sm">
           {"We'll contact you within 30 minutes to set up your platform."}
@@ -152,9 +211,9 @@ function DemoFormInline() {
             className={inputClass}
           >
             <option value="">Select range</option>
-            <option value="0-50">0 – 50</option>
-            <option value="50-200">50 – 200</option>
-            <option value="200-500">200 – 500</option>
+            <option value="0-50">0 - 50</option>
+            <option value="50-200">50 - 200</option>
+            <option value="200-500">200 - 500</option>
             <option value="500+">500+</option>
           </select>
         </div>
@@ -177,46 +236,35 @@ function DemoFormInline() {
 
       {error && <p className="text-sm text-red-600">⚠ {error}</p>}
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-base rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-      >
-        {loading ? "Booking…" : "🚀 Book My Test Series"}
-        <p className="text-xs text-slate-400">
+      <div className="space-y-3 pt-1">
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-base rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        >
+          {loading ? "Booking..." : "🚀 Book My Test Series"}
+        </button>
+
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-px bg-slate-200" />
+          <span className="text-xs text-slate-400 font-semibold tracking-wider">
+            OR
+          </span>
+          <div className="flex-1 h-px bg-slate-200" />
+        </div>
+
+        <WhatsAppButton size="lg" fullWidth>
+          Chat on WhatsApp
+        </WhatsAppButton>
+
+        <p className="text-xs text-slate-400 text-center pt-1">
           🔒 No payment now. Just a quick call to understand your needs.
         </p>
-        <a
-          href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => {
-            // fire conversion first
-            if (typeof window !== "undefined" && window.gtag) {
-              window.gtag("event", "conversion", {
-                send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
-              });
-            }
-
-            // DO NOT prevent default (important)
-          }}
-        >
-          <svg
-            viewBox="0 0 24 24"
-            className="w-4 h-4 fill-white"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-          </svg>
-          Call on WhatsApp
-        </a>
-        <div></div>
-      </button>
+      </div>
     </form>
   );
 }
 
-/* ─── Full Contact Form (bottom section) ─────────────────────────── */
 function ContactForm() {
   const [form, setForm] = useState({
     name: "",
@@ -259,6 +307,10 @@ function ContactForm() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
+
+      fireGoogleConversion();
+      fireFacebookLead();
+
       setSuccess(true);
       setForm({ name: "", phone: "", institute: "", students: "", exam: "" });
     } catch (err) {
@@ -278,7 +330,7 @@ function ContactForm() {
       <div className="text-center py-8">
         <div className="text-6xl mb-4">🎉</div>
         <div className="text-2xl font-extrabold text-slate-900 mb-2">
-          {"You're In! 🎉"}
+          {"You're In!"}
         </div>
         <p className="text-slate-500">
           {"We'll contact you within 30 minutes to set up your platform."}
@@ -333,9 +385,9 @@ function ContactForm() {
             className={inputClass}
           >
             <option value="">Select student range</option>
-            <option value="0-50">0 – 50</option>
-            <option value="50-200">50 – 200</option>
-            <option value="200-500">200 – 500</option>
+            <option value="0-50">0 - 50</option>
+            <option value="50-200">50 - 200</option>
+            <option value="200-500">200 - 500</option>
             <option value="500+">500+</option>
           </select>
         </div>
@@ -364,32 +416,21 @@ function ContactForm() {
           disabled={loading}
           className="w-full bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-base rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
-          {loading ? "Booking…" : "🚀 Book My Test Series"}
+          {loading ? "Booking..." : "🚀 Book My Test Series"}
         </button>
-        <a
-          href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => {
-            // fire conversion first
-            if (typeof window !== "undefined" && window.gtag) {
-              window.gtag("event", "conversion", {
-                send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
-              });
-            }
 
-            // DO NOT prevent default (important)
-          }}
-        >
-          <svg
-            viewBox="0 0 24 24"
-            className="w-5 h-5 fill-white"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-          </svg>
-          💬 WhatsApp to Get Started
-        </a>
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-px bg-slate-200" />
+          <span className="text-xs text-slate-400 font-semibold tracking-wider">
+            OR
+          </span>
+          <div className="flex-1 h-px bg-slate-200" />
+        </div>
+
+        <WhatsAppButton size="lg" fullWidth>
+          WhatsApp to Get Started
+        </WhatsAppButton>
+
         <p className="text-center text-xs text-slate-400">
           🔒 No payment now. Just a quick call to understand your needs.
         </p>
@@ -398,20 +439,6 @@ function ContactForm() {
   );
 }
 
-/* ─── WhatsApp SVG ─────────────────────────────────────────────────── */
-function WaIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="w-7 h-7 fill-white"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
-  );
-}
-
-/* ─── Main Page ────────────────────────────────────────────────────── */
 export default function TestSeriesPage() {
   const benefits = [
     {
@@ -442,7 +469,7 @@ export default function TestSeriesPage() {
     {
       icon: "🏆",
       t: "Professional System",
-      d: "Exactly like Allen & Aakash — at a fraction of the cost.",
+      d: "Exactly like Allen and Aakash, at a fraction of the cost.",
     },
   ];
 
@@ -460,7 +487,7 @@ export default function TestSeriesPage() {
     {
       icon: "🇮🇳",
       t: "All India Rank",
-      d: "Live rank among all test takers — drives engagement.",
+      d: "Live rank among all test takers, drives engagement.",
     },
   ];
 
@@ -478,7 +505,7 @@ export default function TestSeriesPage() {
     {
       icon: "📋",
       t: "Manage All Students",
-      d: "One dashboard for every student — enrolments, attempts, payments.",
+      d: "One dashboard for every student: enrolments, attempts, payments.",
     },
     {
       icon: "📈",
@@ -489,14 +516,14 @@ export default function TestSeriesPage() {
 
   return (
     <div className="font-sans bg-white text-slate-900 overflow-x-hidden">
-      {/* ── URGENCY BANNER ── */}
       <div className="bg-amber-500 text-white text-center text-xs sm:text-sm font-bold py-2.5 px-4">
-        🔥 Limited Offer: First 10 Coaching Institutes Get 50% OFF — Only{" "}
+        🔥 Limited Offer: First 10 Coaching Institutes Get 50% OFF, Only{" "}
         <span className="underline">3 Slots Left!</span>{" "}
         <a href="#contact" className="underline ml-1">
-          Claim Now →
+          Claim Now
         </a>
       </div>
+
       <section className="py-5 px-5 bg-slate-50">
         <div className="max-w-4xl mx-auto text-center">
           <span className="inline-block bg-indigo-50 text-indigo-600 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
@@ -506,12 +533,10 @@ export default function TestSeriesPage() {
             See How This Test Series System Works
           </h2>
           <p className="text-lg text-slate-500 max-w-xl mx-auto mb-10">
-            This is a real test system — not a concept. Students attempt tests,
+            This is a real test system, not a concept. Students attempt tests,
             submit answers, and get instant results with rank.
           </p>
-          {/* Video embed placeholder */}
           <div className="relative w-full rounded-2xl overflow-hidden border-2 border-indigo-200 shadow-2xl shadow-indigo-500/15 bg-slate-900 aspect-video flex items-center justify-center">
-            {/* Replace src with your real YouTube or video URL */}
             <iframe
               className="w-full h-full"
               src="https://www.youtube.com/embed/qoZFXZzplKE"
@@ -519,48 +544,20 @@ export default function TestSeriesPage() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
-            {/* <div className="text-center text-white p-10">
-              <div className="w-20 h-20 rounded-full bg-indigo-600/80 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-indigo-600 transition-colors">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="w-10 h-10 fill-white ml-1.5"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <p className="text-lg font-bold text-white">
-                Demo Video Coming Soon
-              </p>
-              <p className="text-sm text-slate-400 mt-1">
-                Replace this with your YouTube embed URL
-              </p>
-            </div> */}
           </div>
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <a
-              href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                // fire conversion first
-                if (typeof window !== "undefined" && window.gtag) {
-                  window.gtag("event", "conversion", {
-                    send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
-                  });
-                }
-
-                // DO NOT prevent default (important)
-              }}
+              href="#contact"
+              className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-base rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 transition-all no-underline"
             >
-              💬 WhatsApp to Buy
+              🚀 Book My Test Series
             </a>
+            <WhatsAppButton size="lg">WhatsApp to Buy</WhatsAppButton>
           </div>
         </div>
       </section>
 
-      {/* ── HERO ── */}
       <section className="px-5 pt-12 pb-16 bg-gradient-to-b from-indigo-50 via-slate-50 to-white relative overflow-hidden">
-        {/* dot grid */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -569,7 +566,6 @@ export default function TestSeriesPage() {
             backgroundSize: "34px 34px",
           }}
         />
-        {/* glow */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -580,7 +576,6 @@ export default function TestSeriesPage() {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            {/* Left: copy */}
             <div>
               <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 rounded-full px-4 py-2 text-xs font-semibold tracking-widest text-indigo-600 uppercase mb-6">
                 <span className="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_0_3px_rgba(34,197,94,0.2)] animate-pulse" />
@@ -594,23 +589,22 @@ export default function TestSeriesPage() {
                   Test Series System
                 </span>
                 <br />
-                Like Allen & Aakash
+                Like Allen and Aakash
               </h1>
 
               <p className="text-xl font-bold text-indigo-700 mb-3">
-                Generate ₹1–3 lakh/month from students you already teach
+                Generate Rs. 1-3 lakh/month from students you already teach
               </p>
               <p className="text-base text-slate-500 leading-relaxed mb-8">
-                Your students are already paying for test series — just not to
+                Your students are already paying for test series, just not to
                 you. Launch your own platform and start earning from your own
                 students.
               </p>
 
-              {/* Proof bar */}
               <div className="flex flex-wrap gap-0 bg-white border border-slate-200 rounded-2xl shadow-md overflow-hidden mb-8">
                 {[
                   { num: 500, suffix: "+", lbl: "Institutes", counter: true },
-                  { num: "₹1–3L", lbl: "Avg. Monthly Income", counter: false },
+                  { num: "1-3L", lbl: "Avg. Monthly Income", counter: false },
                   {
                     num: 50,
                     suffix: "K+",
@@ -644,31 +638,14 @@ export default function TestSeriesPage() {
                 >
                   🚀 Book My Test Series
                 </a>
-                <a
-                  href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => {
-                    // fire conversion first
-                    if (typeof window !== "undefined" && window.gtag) {
-                      window.gtag("event", "conversion", {
-                        send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
-                      });
-                    }
-
-                    // DO NOT prevent default (important)
-                  }}
-                >
-                  💬 WhatsApp to Buy
-                </a>
+                <WhatsAppButton size="lg">WhatsApp to Buy</WhatsAppButton>
               </div>
             </div>
 
-            {/* Right: inline form */}
             <div className="bg-white rounded-2xl p-7 sm:p-9 border border-slate-200 shadow-2xl shadow-indigo-500/10">
               <div className="text-center mb-6">
                 <span className="inline-block bg-amber-50 text-amber-700 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-2">
-                  🎁 50% OFF – Limited Slots
+                  🎁 50% OFF, Limited Slots
                 </span>
                 <h2 className="text-2xl font-extrabold text-slate-900">
                   Book My Test Series
@@ -683,13 +660,12 @@ export default function TestSeriesPage() {
         </div>
       </section>
 
-      {/* ── TRUST STRIP ── */}
       <section className="bg-slate-900 py-12 px-5">
         <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-y sm:divide-y-0 divide-slate-800 sm:divide-x sm:divide-slate-800">
           {[
             { i: "🏆", v: "500+", d: "Institutes Launched" },
             { i: "👨‍🎓", v: "50K+", d: "Students on Platform" },
-            { i: "💰", v: "₹3L/mo", d: "Max Earned by 1 Institute" },
+            { i: "💰", v: "Rs. 3L/mo", d: "Max Earned by 1 Institute" },
             { i: "⚡", v: "7 Days", d: "Setup Time" },
             { i: "⭐", v: "4.9★", d: "Client Rating" },
           ].map((t, i) => (
@@ -707,9 +683,6 @@ export default function TestSeriesPage() {
         </div>
       </section>
 
-      {/* ── VIDEO DEMO ── */}
-
-      {/* ── PROBLEM ── */}
       <section className="py-20 px-5 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -733,7 +706,7 @@ export default function TestSeriesPage() {
             {[
               {
                 icon: "💸",
-                t: "You Lose ₹1–3 Lakh/Month",
+                t: "You Lose Rs. 1-3 Lakh/Month",
                 d: "Every test series fee your student pays to Allen or Aakash is money that should be yours.",
               },
               {
@@ -744,7 +717,7 @@ export default function TestSeriesPage() {
               {
                 icon: "🚫",
                 t: "Missing a Major Opportunity",
-                d: "Test series is a recurring revenue stream — and you're leaving it on the table.",
+                d: "Test series is a recurring revenue stream and you're leaving it on the table.",
               },
             ].map((p, i) => (
               <div
@@ -765,13 +738,12 @@ export default function TestSeriesPage() {
               href="#contact"
               className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-base rounded-xl px-9 py-4 shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 transition-all no-underline"
             >
-              Fix This — Book My Test Series →
+              Fix This, Book My Test Series
             </a>
           </div>
         </div>
       </section>
 
-      {/* ── SOLUTION ── */}
       <section className="py-20 px-5 bg-gradient-to-br from-indigo-700 to-purple-800 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -790,7 +762,7 @@ export default function TestSeriesPage() {
               Launch Your Own Test Series System
             </h2>
             <p className="text-lg text-white/75 max-w-2xl mx-auto">
-              Now you can run your own test series platform — just like top
+              Now you can run your own test series platform, just like top
               institutes. Your branding. Your revenue. Your control.
             </p>
           </div>
@@ -799,7 +771,7 @@ export default function TestSeriesPage() {
               {
                 icon: "⏱️",
                 t: "Attempt Tests With Timer",
-                d: "Full exam-like experience — timed tests, question navigation, section switching.",
+                d: "Full exam-like experience: timed tests, question navigation, section switching.",
               },
               {
                 icon: "⚡",
@@ -809,7 +781,7 @@ export default function TestSeriesPage() {
               {
                 icon: "🏆",
                 t: "View All India Rank",
-                d: "Students see where they stand vs. all other test takers — motivation guaranteed.",
+                d: "Students see where they stand vs. all other test takers, motivation guaranteed.",
               },
             ].map((s, i) => (
               <div
@@ -833,7 +805,6 @@ export default function TestSeriesPage() {
         </div>
       </section>
 
-      {/* ── BENEFITS ── */}
       <section id="features" className="py-20 px-5 bg-slate-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -865,7 +836,6 @@ export default function TestSeriesPage() {
         </div>
       </section>
 
-      {/* ── WHAT STUDENTS SEE ── */}
       <section className="py-20 px-5 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
@@ -895,23 +865,9 @@ export default function TestSeriesPage() {
               </div>
             ))}
           </div>
-
-          {/* Screenshot placeholder */}
-          {/* <div className="bg-slate-100 border-2 border-dashed border-slate-300 rounded-2xl aspect-video flex items-center justify-center text-center p-8">
-            <div>
-              <div className="text-5xl mb-3">📸</div>
-              <p className="text-slate-500 font-semibold">
-                Add Result Screenshot Here
-              </p>
-              <p className="text-xs text-slate-400 mt-1">
-                Replace this div with an &lt;Image /&gt; of your result screen
-              </p>
-            </div>
-          </div> */}
         </div>
       </section>
 
-      {/* ── ADMIN DASHBOARD ── */}
       <section className="py-20 px-5 bg-slate-900">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
@@ -938,11 +894,9 @@ export default function TestSeriesPage() {
               </div>
             ))}
           </div>
-          {/* Dashboard screenshot placeholder */}
         </div>
       </section>
 
-      {/* ── OFFER ── */}
       <section className="py-20 px-5 bg-amber-500 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -971,30 +925,13 @@ export default function TestSeriesPage() {
               href="#contact"
               className="bg-white text-amber-700 font-bold text-base rounded-xl px-10 py-4 shadow-xl hover:-translate-y-0.5 transition-all no-underline"
             >
-              🚀 Book My Test Series – 50% OFF
+              🚀 Book My Test Series, 50% OFF
             </a>
-            <a
-              href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                // fire conversion first
-                if (typeof window !== "undefined" && window.gtag) {
-                  window.gtag("event", "conversion", {
-                    send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
-                  });
-                }
-
-                // DO NOT prevent default (important)
-              }}
-            >
-              💬 WhatsApp to Buy
-            </a>
+            <WhatsAppButton size="lg">WhatsApp to Buy</WhatsAppButton>
           </div>
         </div>
       </section>
 
-      {/* ── CONTACT FORM ── */}
       <section id="contact" className="py-20 px-5 bg-slate-50">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
@@ -1006,7 +943,7 @@ export default function TestSeriesPage() {
             </h2>
             <p className="text-base text-slate-500">
               {
-                " We'll set up your platform within 7 days. No tech skills needed."
+                "We'll set up your platform within 7 days. No tech skills needed."
               }
             </p>
           </div>
@@ -1016,7 +953,6 @@ export default function TestSeriesPage() {
         </div>
       </section>
 
-      {/* ── FINAL CTA ── */}
       <section className="py-20 px-5 text-center bg-gradient-to-br from-indigo-700 to-purple-800 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -1031,7 +967,7 @@ export default function TestSeriesPage() {
             Start Your Own Test Series System Today
           </h2>
           <p className="text-lg text-white/75 mb-3">
-            {" Don't let other platforms earn from your students."}
+            {"Don't let other platforms earn from your students."}
           </p>
           <p className="text-base text-white/60 mb-10">
             Take control, build your own platform, and start generating income.
@@ -1044,23 +980,7 @@ export default function TestSeriesPage() {
             >
               🚀 Book My Test Series
             </a>
-            <a
-              href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                // fire conversion first
-                if (typeof window !== "undefined" && window.gtag) {
-                  window.gtag("event", "conversion", {
-                    send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
-                  });
-                }
-
-                // DO NOT prevent default (important)
-              }}
-            >
-              💬 WhatsApp to Buy
-            </a>
+            <WhatsAppButton size="lg">WhatsApp to Buy</WhatsAppButton>
             <a
               href="tel:+919304136129"
               className="text-white border-2 border-white/40 font-semibold text-base rounded-xl px-7 py-4 hover:border-white hover:bg-white/10 transition-all no-underline"
@@ -1071,31 +991,25 @@ export default function TestSeriesPage() {
         </div>
       </section>
 
-      {/* ── WHATSAPP FLOAT ── */}
       <a
-        href="https://wa.me/919304136129?text=Hi%2C%20I%20want%20to%20start%20my%20own%20test%20series.%20Please%20share%20pricing%20%26%20setup%20details."
+        href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={(e) => {
-          // fire conversion first
-          if (typeof window !== "undefined" && window.gtag) {
-            window.gtag("event", "conversion", {
-              send_to: "AW-16812620227/X5haCPyz3qccEMPz8NA-",
-            });
-          }
-
-          // DO NOT prevent default (important)
-        }}
+        onClick={fireGoogleConversion}
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-5 right-5 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform"
+        style={{ animation: "wa-pulse 2s infinite" }}
       >
-        <WaIcon />
-        <style>{`
-          @keyframes wa-pulse {
-            0%   { box-shadow: 0 4px 20px rgba(37,211,102,.55), 0 0 0 0 rgba(37,211,102,.45); }
-            70%  { box-shadow: 0 4px 20px rgba(37,211,102,.55), 0 0 0 18px rgba(37,211,102,0); }
-            100% { box-shadow: 0 4px 20px rgba(37,211,102,.55), 0 0 0 0 rgba(37,211,102,0); }
-          }
-        `}</style>
+        <WhatsAppIcon className="w-7 h-7" />
       </a>
+
+      <style>{`
+        @keyframes wa-pulse {
+          0%   { box-shadow: 0 4px 20px rgba(37,211,102,.55), 0 0 0 0 rgba(37,211,102,.45); }
+          70%  { box-shadow: 0 4px 20px rgba(37,211,102,.55), 0 0 0 18px rgba(37,211,102,0); }
+          100% { box-shadow: 0 4px 20px rgba(37,211,102,.55), 0 0 0 0 rgba(37,211,102,0); }
+        }
+      `}</style>
     </div>
   );
 }
